@@ -16,28 +16,27 @@ const Login = () => {
       type: type,
       password: password
     }).then((res)=>{
-      console.log("yha bhi aa gaya")
-      console.log(type)
-      console.log(res)
-      console.log(res.data)
-      // res.type==="customer"?navigate("/"):res.data.type==="seller"?navigate("/sellerProfile"):res.data.type==="admin"?navigate("/adminProfile"):console.log("qq")
-      // else alert message
+      // console.log("yha bhi aa gaya")
+      // console.log(type)
+      // console.log(res.data)
+      // console.log(res)
+      res.type==="customer"?navigate("/"):res.type==="seller"?navigate("/sellerProfile"):res.type==="admin"?navigate("/adminProfile"):alert("Invalid Credentials!")
     })
   }
 
   return (
-      // <>
-      // <form>
-      //   <input type="text" onChange={(e)=>setUsername(e.target.value)}></input>
-      //   <select onChange={(e)=>setType(e.target.value)}>
-      //     <option value={"customer"}>Customer</option>
-      //     <option value={"admin"}>Admin</option>
-      //     <option value={"seller"}>Seller</option>
-      //   </select>
-      //   <input type="password" onChange={(e)=>setPassword(e.target.value)}></input>
-      //   <button onClick={(e)=>{e.preventDefault();login()}}>Login</button>
-      // </form>
-      // </>
+  //     <>
+  //     <form>
+  //       <input type="text" onChange={(e)=>setUsername(e.target.value)}></input>
+  //       <select onClick={(e)=>setType(e.target.value)}>
+  //         <option value="customer">Customer</option>
+  //         <option value="seller">Seller</option>
+  //         <option value="admin">Admin</option>
+  //       </select>
+  //       <input type="password" onChange={(e)=>setPassword(e.target.value)}></input>
+  //       <button onClick={(e)=>{e.preventDefault();login()}}>Login</button>
+  //     </form>
+  //     </>
 
       <div>
         <meta charSet="utf-8" />
@@ -59,11 +58,11 @@ const Login = () => {
                     <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username" onChange={(e)=>setUsername(e.target.value)} />
                   </div>
                   <div>
-                    <select className="form-control form-control" onChange={(e)=>setType(e.target.value)}>
+                    <select className="form-control form-control_debug" onChange={(e)=>{setType(e.target.value);console.log(e.target.value)}}>
                       <option disabled>Select Role:</option>
-                      <option value={'customer'}>Customer</option>
-                      <option value={'seller'}>Seller</option>
-                      <option value={'admin'}>Admin</option>
+                      <option value="customer">Customer</option>
+                      <option value="seller">Seller</option>
+                      <option value="admin">Admin</option>
                     </select>
                   </div>
                   <br />
@@ -71,7 +70,7 @@ const Login = () => {
                     <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
                   </div>
                   <br />
-                  <button  className="btn btn-primary btn-sm text-light" onClick={(e)=>{e.preventDefault();login()}}>Login</button>
+                  <button  className="btn btn-primary btn-sm text-light_debug" onClick={(e)=>{e.preventDefault();login()}}>Login</button>
                   <Link className="float-right text-primary" to="/signUp">Not a Member? Sign Up</Link>
                   {/* <a href="register.html" className="float-right text-primary">Not a Member? Register</a> */}
                 </form>

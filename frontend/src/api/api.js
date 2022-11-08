@@ -12,13 +12,15 @@ export const getCart=(user_id)=>{
 export const getLogin=async(data)=>{
     console.log("aa to gaya")
     const response=await myAxios.post("/user/login",data).then((res)=>{
-        console.log(res.data)
         // console.log(res)
-        return res.data;
+        // console.log(res.data)
+        // console.log(res.data.type)
+        return res;
     }).catch((error)=>{
         console.log(error)
     })
     console.log(response.data)
+    return response.data
 }
 
 const {

@@ -1,19 +1,21 @@
 import React from "react";
 import axios from 'axios'
 import { Link } from "react-router-dom";
-// import { getHome } from "../../api/api";
+import { gethomeData } from "../../api/api";
 
 const Home = () => {
   const [brands, setBrands] = React.useState([]);
 
-  React.useEffect(() => {
-    axios.get('http://localhost:8080/').then((res) => {
-      setBrands(res.data.products);
-      console.log(brands);
-    })
-  },[]);
+  // React.useEffect(() => {
+  //   axios.get('http://localhost:8080/').then((res) => {
+  //     setBrands(res.data.products);
+  //     console.log(brands);
+  //   })
+  // },[]);
 
   // getHome({user_id:"harsh",user_type:"customer",password:"Harsh123"})
+  gethomeData();
+  
 
   return (
     <div>

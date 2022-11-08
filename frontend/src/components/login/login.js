@@ -9,6 +9,7 @@ const Login = () => {
   const [type, setType]=useState("")
   const [password, setPassword]=useState("")
 
+  
   const login=()=>{
     
     getLogin({
@@ -16,10 +17,11 @@ const Login = () => {
       type: type,
       password: password
     }).then((res)=>{
-      // console.log("yha bhi aa gaya")
-      // console.log(type)
-      // console.log(res.data)
-      // console.log(res)
+      console.log("yha bhi aa gaya")
+      console.log(type)
+      console.log(res.data)
+      console.log(res)
+      // localStorage.setItem('userId', `${res.username}`);
       res.type==="customer"?navigate("/"):res.type==="seller"?navigate("/sellerProfile"):res.type==="admin"?navigate("/adminProfile"):alert("Invalid Credentials!")
     })
   }
@@ -58,8 +60,8 @@ const Login = () => {
                     <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="username" onChange={(e)=>setUsername(e.target.value)} />
                   </div>
                   <div>
-                    <select className="form-control form-control_debug" onChange={(e)=>{setType(e.target.value);console.log(e.target.value)}}>
-                      <option disabled>Select Role:</option>
+                    <select className="form-control form-control_debug"  onChange={(e)=>{setType(e.target.value);console.log(e.target.value)}}>
+                      <option><em>Select Role:</em></option>
                       <option value="customer">Customer</option>
                       <option value="seller">Seller</option>
                       <option value="admin">Admin</option>

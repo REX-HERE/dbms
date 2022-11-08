@@ -12,7 +12,7 @@ export const getCart=(user_id)=>{
 export const getLogin=async(data)=>{
     console.log("aa to gaya")
     const response=await myAxios.post("/user/login",data).then((res)=>{
-        // console.log(res)
+        console.log(res)
         // console.log(res.data)
         // console.log(res.data.type)
         return res;
@@ -32,7 +32,7 @@ const {
     REACT_APP_HOME_PAGE_PORT
 } = process.env
 
-export const homeDataApi = axios.create({
+export const gethomeData = axios.create({
     baseURL: REACT_APP_HOME_PAGE_URL || `http://localhost:${REACT_APP_HOME_PAGE_PORT}`
 })
 export const addToCartApi = axios.create({

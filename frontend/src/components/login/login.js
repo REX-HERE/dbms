@@ -21,7 +21,7 @@ const Login = () => {
       console.log(type)
       console.log(res.data)
       console.log(res)
-      // localStorage.setItem('userId', `${res.username}`);
+      localStorage.setItem('userId', `${res.userId}`);
       res.type==="customer"?navigate("/"):res.type==="seller"?navigate("/sellerProfile"):res.type==="admin"?navigate("/adminProfile"):alert("Invalid Credentials!")
     })
   }

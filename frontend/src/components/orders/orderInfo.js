@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import "../ui/css/orderInfo.css";
-
+import { getOrdersById } from '../../api/api';
+import { LogLog } from '../../constants/constant_vals';
 
 const Orders = () => {
+
+  const [orderData, setOrderData]=useState([])  
+  const [orderId, setOrderId]=useState("")
+  const [orderTime, setOrderTime]=useState(null)
+  const [orderAddress, setOrderAddress]=useState("")
+  const [productDataList, setProductDataList]=useState([])
+  const [productId, setProductId]=useState("")
+  const [productName, setProductName]=useState("")
+  const [price, setPrice]=useState(0)
+  const [description, setDescription]=useState("")
+  const [brandName, setBrandName]=useState("")
+  const [categoryName, setCategoryName]=useState("")
+  const [ratings, setRatings]=useState(0);
+  const [imageUrl, setImageUrl]=useState(""); 
+
+  useEffect({
+    if(LogLog){
+      console.log(localStorage.getItem("userId"))
+    }    
+    getOrdersById(localStorage.getItem("userId")).then((res)=>{
+
+    })
+  })
+
   return (
     <div>
       <link rel="stylesheet" href="orderInfo.css" />

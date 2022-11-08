@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Component
 public class orderData {
     private String orderId;
-    private Time OrderTime;
+    private Time orderTime;
     private String orderAddress;
     private List<productOrderData> productDataList;
 

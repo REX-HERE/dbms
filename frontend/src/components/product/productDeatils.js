@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const ProductDeatils = () => {
 
@@ -12,7 +13,8 @@ const ProductDeatils = () => {
   const [ratings, setRatings]=useState(0);
   const [imageUrl, setImageUrl]=useState("");
 
-  
+    const location=useLocation()  
+    console.log(location.state.Product)
 
   
 

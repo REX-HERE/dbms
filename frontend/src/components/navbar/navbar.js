@@ -25,9 +25,7 @@ const Navbar = () => {
               <Link className="navbar-brand" to="/">
                 <img src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667666364/DBMS2/shopnownavbar_z0adui.png" width={40} height={40} />              
               </Link>
-              {/* <a className="navbar-brand" href="home.html">
-                <img src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667666364/DBMS2/shopnownavbar_z0adui.png" width={40} height={40} />
-              </a> */}
+
             </nav>
           </div>
           <div className="col-md-7" id="searchbar">

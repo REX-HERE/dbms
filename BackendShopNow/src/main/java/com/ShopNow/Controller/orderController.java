@@ -34,7 +34,7 @@ public class orderController {
     }
 
 
-    @GetMapping("/order/{userId}")
+    @GetMapping("/orders/{userId}")
     List<orderData> getOrderData(@PathVariable String userId){
         return orderDao.getOrderDataByUserId(userId);
     }

@@ -1,10 +1,11 @@
 import React from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { gethomeData } from "../../api/api";
 
 const Home = () => {
   const [brands, setBrands] = React.useState([]);
+  const navigate=useNavigate()
 
   // React.useEffect(() => {
   //   axios.get('http://localhost:8080/').then((res) => {
@@ -15,10 +16,15 @@ const Home = () => {
 
   // getHome({user_id:"harsh",user_type:"customer",password:"Harsh123"})
   gethomeData();
+
+  // const goCart=()=>{
+  //   navigate("/cart", {state:{isTrue:true}})
+  // }
   
 
   return (
     <div>
+      {/* <button onClick={goCart}>cart</button> */}
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />

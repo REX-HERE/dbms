@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  console.log(localStorage.getItem("userId"))
 
+  const navigate = useNavigate(); 
+  
   return (
     <div>
       <meta charSet="utf-8" />
@@ -36,11 +39,18 @@ const Navbar = () => {
             </div>
           </div>
           {/* <a href="login.html"></a> */}
-          <Link to="/login"></Link>
+          
+          
           <div className="col-md-3 mt-2" id="icons">
-            <Link to="/customerProfile">
-              <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
-            </Link>
+          {
+            localStorage.getItem("userId")
+            ?<Link onClick={() => { navigate('/customerProfile'); window.location.reload();}}>
+            <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
+          </Link>
+            :<Link to="/login"><div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div></Link>
+          }
+          
+            
             <Link to="/cart"> 
             <div className="circle float-right mr-2"><i className="fas fa-shopping-cart text-primary" /><sup><span className="badge badge-danger" style={{width: '23px'}} /></sup></div>
             </Link>

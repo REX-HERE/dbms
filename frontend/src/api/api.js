@@ -5,21 +5,15 @@ const myAxios=axios.create({
 })
 
 export const getCart=(userId)=>{
-    myAxios.get("/cart").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get(`/cart/${userId}`);
 }
 
 export const getUserById=(userId)=>{
-    myAxios.get("/user").then((res)=>{
-        return res.data;
-    })
+   return myAxios.get(`/user/${userId}`); 
 }
 
 export const getAllUsers=()=>{
-    myAxios.get("/allUsers").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get("/allUsers")
 }
 
 export const signUp=async(data)=>{
@@ -40,9 +34,7 @@ export const signUp=async(data)=>{
 }
 
 export const deleteUserById=(userId)=>{
-    myAxios.delete("/user/delete").then((res)=>{
-        return res.data;
-    })
+    return myAxios.delete(`/user/delete/${userId}`)
 }
 
 export const getLogin=async(data)=>{
@@ -60,15 +52,11 @@ export const getLogin=async(data)=>{
 }
 
 export const getProductById=(productId)=>{
-    myAxios.get("/products/").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get(`/products/${productId}`)
 }
 
 export const getAllProduct=()=>{
-    myAxios.get("/allProducts/").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get("/allProducts/")
 }
 
 export const registerProduct=async(data)=>{
@@ -89,15 +77,11 @@ export const registerProduct=async(data)=>{
 }
 
 export const deleteProductById=(productId)=>{
-    myAxios.delete("/seller/deleteProduct").then((res)=>{
-        return res.data;
-    })
+    return myAxios.delete(`/seller/deleteProduct/${productId}`)
 }
 
 export const getSellingProducts=(userId)=>{
-    myAxios.get("/seller/products/").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get(`/seller/products/${userId}`)
 }
 
 export const addToCart=async(data)=>{
@@ -135,9 +119,7 @@ export const deleteProductFromCart=async(data)=>{
 }
 
 export const getOrdersById=(userId)=>{
-    myAxios.get("/orders").then((res)=>{
-        return res.data;
-    })
+    return myAxios.get(`/orders/${userId}`)
 }
 
 export const postOrder=async(data)=>{

@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 
 const AdminProfile = () => {
   return (
@@ -20,7 +22,7 @@ const AdminProfile = () => {
         <div className="row rounded">
           <div className="col-3 mb-4 mt-3 pt-4 pb-3 bg-light w-auto h-fit-content">
             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" /> &nbsp; View Users</a>
+              <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" /> &nbsp; View Users</Link>
               <br />
               <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"> &nbsp; View
                 Products</a>

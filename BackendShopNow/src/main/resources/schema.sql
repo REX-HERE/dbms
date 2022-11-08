@@ -22,6 +22,7 @@ insert into user values ("7","Rohan","Kaushal","customer","Rohan123","Patiala");
 insert into user values ("8","Milan","Somani","customer","Milan123","MadhyaPradesh");
 insert into user values ("9","Subhash","Sheoran","customer","Subhash123","Haryana");
 insert into user values ("10","Gourav","Kumar","seller","Gourav123","Delhi");
+insert into user values ("harsh","harsh","Pratheek","customer","Harsh123","Delhi");
 
 
 create table userContactInfo (
@@ -118,6 +119,8 @@ insert into orders (orderId,userId,deliveryAddress) values ("5","8","Haryana");
 insert into orders (orderId,userId,deliveryAddress) values ("6","9","Delhi");
 
 # select * from orders;
+
+drop table orderInfo;
 create table orderInfo(
 	orderId varchar(255),
     productId varchar(255),
@@ -166,10 +169,23 @@ insert into product values("20","Women Shoes",600,"Running Shoes, Rubber Sole, C
 select * from product;
 
 select p.productId, p.productName, p.price, p.productDescription, p.brandName, p.categoryName, p.availableQuantity, p.ratings, p.imageUrl, p.verificationStatus, o.productQuantity
-                from product as p, orderInfo as o where p.productId=o.productId and o.orderId="07fc83fe-c663-4ba9-b218-8e6ffdc7f038";
+                from product as p, orderInfo as o where p.productId=o.productId and o.orderId="0c9807b5-1c17-4954-bc90-9c7893189ef5";
 
 
-insert into orderInfo values("3","1");
+
+select p.productId, p.productName, p.price, p.productDescription, p.brandName, p.categoryName, p.availableQuantity, p.ratings, p.imageUrl, p.verificationStatus, o.productQuantity
+                 from product as p, orderInfo as o where p.productId=o.productId and o.orderId="80a94d3d-b8c1-4cc0-bd84-d7d5b3b7bfc8";
+
+select * from orders;
+select * from orderInfo;
 
 select * from shoppingCart;
 insert into shoppingCart values("5","1","6");
+
+select * from user where userId="harsh" and type="customer" and password="Harsh123";
+
+
+
+
+
+

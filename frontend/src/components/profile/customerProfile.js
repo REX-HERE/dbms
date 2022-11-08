@@ -1,6 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { getUserById } from '../../api/api';
+import { LogLog } from '../../constants/constant_vals';
 
 const CustomerProfile = () => {
+  const navigate= useNavigate()
+  const [userId, setUserId]=useState("")
+  const [firstName, setFirstName]=useState("")
+  const [lastName, setLastName]=useState("")
+  const [type, setType]=useState("")
+  const [address, setAddress]=useState("")
+
+  const clearStorage=()=>{
+    localStorage.removeItem(userId)
+    localStorage.clear();
+    navigate("/login")
+  }
+
+  const getData =()=>{
+    if(LogLog){
+      console.log(localStorage.getItem("userId"))
+    }
+    getUserById(localStorage.getItem("userId")).then((res)=>{
+      setUserId(res.data.userId)
+      setFirstName(res.data.firstName)
+      setLastName(res.data.lastName)
+      setType(res.data.type)
+      setAddress(res.data.address)
+      if(LogLog){
+        console.log(res.data.userId)
+        console.log(res.data.address)
+  
+      }
+    })
+  }
+  useEffect(() => {
+    getData()
+    if(LogLog){
+      console.log(userId)
+      console.log(address)
+  
+    }
+  }, [])
+  
+  
+
   return (
     <div>
       <meta charSet="utf-8" />
@@ -20,11 +64,11 @@ const CustomerProfile = () => {
         <div className="row rounded">
           <div className="col-3 mb-4 mt-3 pt-4 pb-3 bg-light w-auto h-fit-content">
             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; My
-                Orders</a>
+              <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" to="/orders" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; My
+                Orders</Link>
               <br />
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" /> &nbsp; Log
-                Out</a>
+              <Link onClick={(e)=>{e.preventDefault();clearStorage(); window.location.reload()}} className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill"  href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" />  Log
+                Out</Link>
               {/* <a class="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill"
                       href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i
                           class="fas fa-user"></i> &nbsp; Your Profile</a> */}
@@ -35,7 +79,7 @@ const CustomerProfile = () => {
             <div className="tab-content bg-light pb-5" id="v-pills-tabContent">
               <div className="tab-pane fade show active p-3" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                 <img id="profilePic" src="https://icon-library.com/images/default-user-icon/default-user-icon-8.jpg" className="rounded-circle img-fluid" />
-                &nbsp; &nbsp; <h5 className="d-inline-block">Neelesh D &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                &nbsp; &nbsp; <h5 className="d-inline-block">{userId} &nbsp;&nbsp;&nbsp;&nbsp;</h5>
                 <br />
                 <br />
                 <hr />
@@ -44,30 +88,30 @@ const CustomerProfile = () => {
                   <div className="row pb-5">
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">First Name</p>
-                      <input type="text" className="form-control" />
+                      <input type="text" placeholder={firstName} className="form-control" />
                     </div>
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">Last Name</p>
-                      <input type="text" className="form-control" />
+                      <input type="text" placeholder={lastName} className="form-control" />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">Type</p>
                       <div>
-                        <select className="form-control form-control">
-                          <option disabled>Select Role:</option>
-                          <option>Buyer</option>
-                          <option>Seller</option>
-                          <option>Admin</option>
-                        </select>
-                      </div>
+                    <select className="form-control form-control_debug"  onChange={(e)=>{setType(e.target.value);console.log(e.target.value)}}>
+                      <option><em>{type}</em></option>
+                      <option value="customer">Customer</option>
+                      <option value="seller">Seller</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </div>
                       {/* <input type="text" class="form-control" placeholder="Type"> */}
                     </div>
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">Address</p>
                       <div className="input-group mb-3">
-                        <input type="text" className="form-control" placeholder="Type here" />
+                        <input type="text" placeholder={address} className="form-control" />
                       </div>
                     </div>
                   </div>
@@ -75,7 +119,7 @@ const CustomerProfile = () => {
                 <hr />
                 <div className="delAccount pt-3">
                   <h5 className="text-dark">Delete Account</h5>
-                  <a href className="text-muted float-right font-weight-bold">Delete Your Account</a>
+                  <Link to="/login" className="text-muted float-right font-weight-bold">Delete Your Account</Link>
                   <p className="text-muted">By deleting your account, you will lose all your data.</p>
                 </div>
                 <hr className="mt-4" /><br /><br />
@@ -114,36 +158,9 @@ const CustomerProfile = () => {
           </div>
         </div>
       </div>
-      <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div className="modal-dialog modal-dialog-centered" role="document">
-          <div className="modal-content">
-            <div className="modal-header bg-dark">
-              <h5 className="modal-title text-light" id="exampleModalCenterTitle">Login</h5>
-              <button type="button" className="close text-light" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="modal-body bg-light">
-              <form>
-                <div className="form-group">
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Email" />
-                  <small id="emailHelp" className="form-text text-danger">We'll never share your email with anyone
-                    else!</small>
-                </div>
-                <div className="form-group">
-                  <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                </div>
-                <div className="form-group form-check">
-                  <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                  <label className="form-check-label" htmlFor="exampleCheck1">Keep me Logined</label>
-                </div>
-                <button type="submit" className="btn btn-secondary btn-sm text-light"><a href="profile.html" className="text-light">Login</a></button>
-                <a href="register.html" className="float-right text-muted">Not a Member? Register</a>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
+
     </div>
   );
 }

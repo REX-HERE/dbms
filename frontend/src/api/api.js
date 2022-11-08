@@ -9,11 +9,16 @@ export const getCart=(user_id)=>{
     })
 }
 
-export const getHome=(data)=>{
-    myAxios.post("/user/login",data).then((res)=>{
+export const getLogin=async(data)=>{
+    console.log("aa to gaya")
+    const response=await myAxios.post("/user/login",data).then((res)=>{
         console.log(res.data)
+        // console.log(res)
         return res.data;
+    }).catch((error)=>{
+        console.log(error)
     })
+    console.log(response.data)
 }
 
 const {

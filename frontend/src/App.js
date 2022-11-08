@@ -30,10 +30,7 @@ function App() {
     
     
     <div>
-        <div>
         <Navbar/>
-
-        </div>
         
       <Routes>
         <Route path='/' element={<Home/>}></Route>
@@ -57,9 +54,7 @@ function App() {
 
       </Routes>
 
-        <div>
         <Footer/>
-        </div>
     </div>
   
 

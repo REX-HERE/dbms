@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios'
-import { getHome } from "../../api/api";
+import { Link } from "react-router-dom";
+// import { getHome } from "../../api/api";
 
 const Home = () => {
   const [brands, setBrands] = React.useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
     })
   },[]);
 
-  getHome({user_id:"harsh",user_type:"customer",password:"Harsh123"})
+  // getHome({user_id:"harsh",user_type:"customer",password:"Harsh123"})
 
   return (
     <div>

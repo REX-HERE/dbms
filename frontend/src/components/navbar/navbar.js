@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -7,7 +8,7 @@ const Navbar = () => {
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>E-Commerce Website</title>
+      <title>ShopNow</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous" />
       {/* <link rel="stylesheet" href="../ui/css/style.css" /> */}
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossOrigin="anonymous" />{/* fontawesom cdn link */}
@@ -18,29 +19,35 @@ const Navbar = () => {
           <div className="col-md-2" style={{right: '5%'}}>
             {/* Just an image */}
             <nav className="navbar navbar-light">
-              <a className="navbar-brand" href="home.html">
+              <Link className="navbar-brand" to="/">
+                <img src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667666364/DBMS2/shopnownavbar_z0adui.png" width={40} height={40} />              
+              </Link>
+              {/* <a className="navbar-brand" href="home.html">
                 <img src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667666364/DBMS2/shopnownavbar_z0adui.png" width={40} height={40} />
-              </a>
+              </a> */}
             </nav>
           </div>
           <div className="col-md-7" id="searchbar">
             <div className="input-group mt-3">
               <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
               <div className="input-group-append">
-                {/* <button className="btn btn-primary" type="button" id="button-addon2"><i className="fas fa-search" /></button> */}
+                <button className="btn btn-primary" type="button" id="button-addon2"><i className="fas fa-search" /></button>
               </div>
             </div>
           </div>
-          <a href="login.html">
-          </a><div className="col-md-3 mt-2" id="icons"><a href="login.html">
+          {/* <a href="login.html"></a> */}
+          <Link to="/login"></Link>
+          <div className="col-md-3 mt-2" id="icons">
+            <Link to="/customerProfile">
               <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
-            </a>
-            <a href="cart.html"> <div className="circle float-right mr-2"><i className="fas fa-shopping-cart text-primary" /><sup><span className="badge badge-danger" style={{width: '23px'}} /></sup></div>
-            </a>
+            </Link>
+            <Link to="/cart"> 
+            <div className="circle float-right mr-2"><i className="fas fa-shopping-cart text-primary" /><sup><span className="badge badge-danger" style={{width: '23px'}} /></sup></div>
+            </Link>
           </div>
         </div>
       </div>
-      <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      {/* <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header bg-dark">
@@ -68,7 +75,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

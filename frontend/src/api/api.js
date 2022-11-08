@@ -8,12 +8,33 @@ export const getCart=(userId)=>{
     return myAxios.get(`/cart/${userId}`);
 }
 
+export const getHomeData=()=>{
+    return myAxios.get("/");
+}
+
 export const getUserById=(userId)=>{
    return myAxios.get(`/user/${userId}`); 
 }
 
 export const getAllUsers=()=>{
     return myAxios.get("/allUsers")
+}
+
+export const postUser=async(data)=>{
+    const response=await myAxios.post("/user/update",data).then((res)=>{
+        if(LogLog){
+            console.log(res)
+        }
+        return res;
+    }).catch((error)=>{
+        if(LogDebug){
+            console.log(error)
+        }
+    })
+    if(LogLog){
+        console.log(response.data)
+    }
+    return response.data
 }
 
 export const signUp=async(data)=>{
@@ -141,21 +162,21 @@ export const postOrder=async(data)=>{
 
 
 
-const {
-    REACT_APP_HOME_PAGE_URL,
-    REACT_APP_ADD_TO_CART_URL,
+// const {
+//     REACT_APP_HOME_PAGE_URL,
+//     REACT_APP_ADD_TO_CART_URL,
 
 
-    REACT_APP_ADD_TO_CART_PORT,
-    REACT_APP_HOME_PAGE_PORT
-} = process.env
+//     REACT_APP_ADD_TO_CART_PORT,
+//     REACT_APP_HOME_PAGE_PORT
+// } = process.env
 
-export const gethomeData = axios.create({
-    baseURL: REACT_APP_HOME_PAGE_URL || `http://localhost:${REACT_APP_HOME_PAGE_PORT}`
-})
-export const addToCartApi = axios.create({
-    baseURL: REACT_APP_ADD_TO_CART_URL || `http://localhost:${REACT_APP_ADD_TO_CART_PORT}`
-})
+// export const gethomeData = axios.create({
+//     baseURL: REACT_APP_HOME_PAGE_URL || `http://localhost:${REACT_APP_HOME_PAGE_PORT}`
+// })
+// export const addToCartApi = axios.create({
+//     baseURL: REACT_APP_ADD_TO_CART_URL || `http://localhost:${REACT_APP_ADD_TO_CART_PORT}`
+// })
 // export const homeDataApi = axios.create({
 //     baseURL: REACT_APP_HOME_PAGE_URL || `http://localhost:${REACT_APP_HOME_PAGE_PORT}`
 // })

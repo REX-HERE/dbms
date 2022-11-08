@@ -51,7 +51,7 @@ public class userDao {
         }
         return null;
     }
-    public Integer insertUser(user userDetail) {
+    public Integer updateUser(user userDetail) {
 
         String firstName = userDetail.getFirstName();
         String lastName  = userDetail.getLastName();
@@ -75,14 +75,50 @@ public class userDao {
 //        }
 
         try {
-            String insertQuery = "insert into user(userId,firstName,lastName,type,password,address) values(?,?,?,?,?,?)";
+            String insertQuery = "update user set firstName=?, lastName=?, type=?, password=?, address=? where userId=?";
             String finalUserId = userId;
-            Integer update = this.userJdbc.update(insertQuery, new Object[]{finalUserId, firstName,lastName,type,password,address});
+            Integer update = this.userJdbc.update(insertQuery, new Object[]{firstName,lastName,type,password,address, finalUserId});
             return update;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return exist;
+    }
+
+    public Integer insertUser(user userDetail) {
+
+        String firstName = userDetail.getFirstName();
+        String lastName  = userDetail.getLastName();
+        String type = userDetail.getType();
+        String password = userDetail.getPassword();
+        String address = userDetail.getAddress();
+        String userId = userDetail.getUserId();
+        Integer exist = 0;
+
+//        try {
+//            String existQuery = "SELECT COUNT(userId) FROM user WHERE userId =?";
+//            exist = userJdbc.queryForObject(existQuery, Integer.class, userId);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        while (exist != 0) {
+//            userId = UUID.randomUUID().toString();
+//            String existQuery = "SELECT COUNT(userId) FROM user WHERE userId =?";
+//            exist = userJdbc.queryForObject(existQuery, Integer.class, userId);z
+//        }
+
+        try {
+            String insertQuery = "insert into user values (?,?,?,?,?,?)";
+            String finalUserId = userId;
+            Integer update = this.userJdbc.update(insertQuery, new Object[]{finalUserId,firstName,lastName,type,password,address});
+            return update;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return exist;
+
+
     }
 
     public Integer deleteUser(String userId){
@@ -97,6 +133,7 @@ public class userDao {
         return null;
 
     }
+
 
 
 }

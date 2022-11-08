@@ -12,6 +12,7 @@ const ProductDeatils = () => {
   const [ratings, setRatings]=useState(0);
   const [imageUrl, setImageUrl]=useState("");
 
+  
 
   
 

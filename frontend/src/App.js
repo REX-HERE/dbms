@@ -16,7 +16,7 @@ import Orders from "./components/orders/orderInfo";
 import CustomerProfile from "./components/profile/customerProfile";
 import SellerProfile from "./components/profile/sellerProfile";
 import AdminProfile from "./components/profile/adminProfile";
-import SignUp from "./components/login/login";
+import SignUp from "./components/login/signUp";
 import Login from "./components/login/login";
 import Footer from "./components/footer/footer";
 

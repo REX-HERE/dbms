@@ -40,8 +40,13 @@ public class userController {
         return userDao.getAllUser();
     }
 
-    @PostMapping("/user/signUp")
+    @PostMapping("/user/update")
     public Integer postUser(@RequestBody user userDetail){
+        return userDao.updateUser(userDetail);
+    }
+
+    @PostMapping("/user/signUp")
+    public Integer signUp(@RequestBody user userDetail){
         return userDao.insertUser(userDetail);
     }
 

@@ -1,21 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
-import { gethomeData } from "../../api/api";
+import { getHomeData } from "../../api/api";
+import { LogLog } from "../../constants/constant_vals";
+
+function ProductCard(props) {
+  return(
+    <div className="col-md-3" style={{padding : 8}}>
+      <div className="card">
+        <img className="card-img-top img-fluid" src={props.imageUrl} alt="Card image cap" />
+        <div className="card-body">
+          <p className="card-text"><a href="inner-productpage.html" className="text-dark">{props.productDescription}</a></p>
+          <div className="ratings">
+            <label className="text-secondary ml-3" />
+          </div>
+          <p className="card-cost">RS {props.price}</p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const Home = () => {
-  const [brands, setBrands] = React.useState([]);
-  const navigate=useNavigate()
+  
+  const navigate = useNavigate(); 
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  // React.useEffect(() => {
-  //   axios.get('http://localhost:8080/').then((res) => {
-  //     setBrands(res.data.products);
-  //     console.log(brands);
-  //   })
-  // },[]);
+  useEffect(() => {
+    getHomeData().then((res) => {
+      console.log(res.data.categories)
+      console.log(res.data.brands)
 
-  // getHome({user_id:"harsh",user_type:"customer",password:"Harsh123"})
-  gethomeData();
+      setCategories(res.data.categories)
+      setBrands(res.data.brands)
+      setProducts(res.data.products)
+    });
+
+    if(LogLog){
+      console.log("done")
+    }
+  }, [])
+
+
 
   // const goCart=()=>{
   //   navigate("/cart", {state:{isTrue:true}})
@@ -43,15 +71,13 @@ const Home = () => {
           <div className="collapse navbar-collapse pl-4" id="navbarNav">
             <ul className="navbar-nav">
             {
-              brands.map((product)=>(
-                <li>
-                  {product.brandName}
-                </li>
+              categories.map((catagoryName, index)=>(
+                <li className="nav-item active" key={index} style={{overflow : 'hidden'}}>
+                <a className="nav-link" href="#">{catagoryName}</a>
+              </li>
               ))
             }
-              <li className="nav-item active">
-                <a className="nav-link" href="#">Furnitures</a>
-              </li>
+              
             </ul>
           </div>
         </nav>
@@ -84,75 +110,10 @@ const Home = () => {
       <div className="container cardItem" id="products">
         <h2>Popular Products</h2>
         <br />
-        <div className="row">
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/2.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Some item name here</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$280.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/3.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Great item name here</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$56.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/4.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
+        <div className="row gx-2 gy-2">
+          {
+            products.map((product, index) => <ProductCard key={index} {...product} />)
+          }
         </div>
       </div>
       <br />
@@ -280,6 +241,27 @@ const Home = () => {
       <div className="container cardItem" id="brands">
         <h2>Our Brands</h2>
         <br />
+        <hr />
+        <div className="container" style={{ height: '30px' }}>
+          <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '30px' }}>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse pl-4" id="navbarNav">
+              <ul className="navbar-nav">
+              {
+                brands.map((brandName, index)=>(
+                  <li className="nav-item active" key={index} style={{overflow : 'hidden'}}>
+                  <a className="nav-link" href="#">{brandName}</a>
+                </li>
+                ))
+              }
+                
+              </ul>
+            </div>
+          </nav>
+        </div>
+      <hr />
         <div className="row">
           <div className="card">
             <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo1.png" width="20%" style={{ padding: '0 35px' }} />

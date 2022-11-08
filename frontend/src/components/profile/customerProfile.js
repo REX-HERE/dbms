@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserById } from '../../api/api';
+import { deleteUserById, getUserById, postUser } from '../../api/api';
 import { LogLog } from '../../constants/constant_vals';
+import "../ui/css/profile.css"
 
 const CustomerProfile = () => {
   const navigate= useNavigate()
@@ -10,11 +11,40 @@ const CustomerProfile = () => {
   const [lastName, setLastName]=useState("")
   const [type, setType]=useState("")
   const [address, setAddress]=useState("")
+  const [password, setPassword]=useState("")
 
   const clearStorage=()=>{
     localStorage.removeItem(userId)
     localStorage.clear();
     navigate("/login")
+  }
+
+  const callDelete=()=>{
+    deleteUserById(userId).then((res)=>{
+      if(LogLog){
+        console.log(res.data)
+      }
+    })
+    localStorage.removeItem(userId)
+    localStorage.clear();
+    navigate("/signUp")
+
+  }
+
+  const postChanges=()=>{
+    postUser({
+      userId: userId,
+      firstName: firstName,
+      lastName: lastName,
+      type: type,
+      address: address,
+      password: password
+    }).then((res) => {
+      if(LogLog){
+        console.log(res.data)
+      }
+
+    })
   }
 
   const getData =()=>{
@@ -27,6 +57,7 @@ const CustomerProfile = () => {
       setLastName(res.data.lastName)
       setType(res.data.type)
       setAddress(res.data.address)
+      setPassword(res.data.password)
       if(LogLog){
         console.log(res.data.userId)
         console.log(res.data.address)
@@ -88,11 +119,11 @@ const CustomerProfile = () => {
                   <div className="row pb-5">
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">First Name</p>
-                      <input type="text" placeholder={firstName} className="form-control" />
+                      <input type="text" placeholder={firstName} onChange={(e)=>setFirstName(e.target.value)} className="form-control" />
                     </div>
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">Last Name</p>
-                      <input type="text" placeholder={lastName} className="form-control" />
+                      <input type="text" placeholder={lastName} onChange={(e)=>setLastName(e.target.value)} className="form-control" />
                     </div>
                   </div>
                   <div className="row">
@@ -106,29 +137,40 @@ const CustomerProfile = () => {
                       <option value="admin">Admin</option>
                     </select>
                   </div>
-                      {/* <input type="text" class="form-control" placeholder="Type"> */}
+                      {/* <input type="text" class="form-control" placeholder="Type" /> */}
                     </div>
                     <div className="col">
                       <p className="font-weight-bold d-inline-block">Address</p>
                       <div className="input-group mb-3">
-                        <input type="text" placeholder={address} className="form-control" />
+                        <input type="text" placeholder={address} onChange={(e)=>setAddress(e.target.value)} className="form-control" />
                       </div>
                     </div>
+                  </div>
+                  <div >
+                    <div className="col">
+                      <p className="font-weight-bold d-inline-block" >Enter Password</p>
+                      <input type="text" placeholder="Enter new password to change it " onChange={(e)=>setPassword(e.target.value)} className="form-control" />
+                    </div>
+                    {/* <div className="col">
+                      <p className="font-weight-bold d-inline-block">Last Name</p>
+                      <input type="text" placeholder={lastName} className="form-control" />
+                    </div> */}
                   </div>
                 </form>
                 <hr />
                 <div className="delAccount pt-3">
                   <h5 className="text-dark">Delete Account</h5>
-                  <Link to="/login" className="text-muted float-right font-weight-bold">Delete Your Account</Link>
+                  <Link onClick={(e)=>{e.preventDefault();callDelete()}} className="text-muted float-right font-weight-bold">Delete Your Account</Link>
                   <p className="text-muted">By deleting your account, you will lose all your data.</p>
                 </div>
                 <hr className="mt-4" /><br /><br />
-                <button type="button" className="btn btn-outline-primary float-right mt-3 mb-5" data-toggle="modal" data-target=".bd-example-modal-md">Save Changes</button>
+                <button type="button" onClick={(e)=>{e.preventDefault();postChanges(); }} className="btn btn-outline-primary float-right mt-3 mb-5" data-toggle="modal" data-target=".bd-example-modal-md">Save Changes</button>
                 <br />
               </div>
               {/* <div class="tab-pane fade p-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
           
         </div> */}
+
             </div>
           </div>
         </div>
@@ -143,7 +185,8 @@ const CustomerProfile = () => {
         </div>
       </div>
       <br /><br />
-      <div className="modal fade bd-example-modal-md" tabIndex={-1} role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+      {/* <div className="modal fade bd-example-modal-md" tabIndex={-1} role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-md">
           <div className="modal-content">
             <div className="modal-header">
@@ -157,7 +200,8 @@ const CustomerProfile = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+    
 
 
 

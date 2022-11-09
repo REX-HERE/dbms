@@ -4,22 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getHomeData } from "../../api/api";
 import { LogLog } from "../../constants/constant_vals";
 
-function ProductCard(props) {
-  return(
-    <div className="col-md-3" style={{padding : 8}}>
-      <div className="card">
-        <img className="card-img-top img-fluid" src={props.imageUrl} alt="Card image cap" />
-        <div className="card-body">
-          <p className="card-text"><a href="inner-productpage.html" className="text-dark">{props.productDescription}</a></p>
-          <div className="ratings">
-            <label className="text-secondary ml-3" />
-          </div>
-          <p className="card-cost">RS {props.price}</p>
-        </div>
-      </div>
-    </div>
-  )
-}
+
 
 const Home = () => {
   
@@ -27,6 +12,25 @@ const Home = () => {
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+
+  function ProductCard(props) {
+    return(
+      <div className="col-md-3" onClick={(e)=>{e.preventDefault();callProductDetails(props)}} style={{padding : 8}}>
+        <div className="card" style={{height:750}}>
+          <img className="card-img-top img-fluid" src={props.imageUrl} alt="Card image cap" />
+          <div className="card-body" >
+            <p className="card-text"><Link  className="text-dark">{props.productName}</Link></p>
+            <p className="card-text"><a  className="text-dark">{props.productDescription}</a></p>
+            <p className="card-text"><Link  className="text-dark">ratings: {props.ratings}</Link></p>
+            
+            <p className="card-cost">RS {props.price}</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+
 
   useEffect(() => {
     getHomeData().then((res) => {
@@ -36,6 +40,10 @@ const Home = () => {
       setCategories(res.data.categories)
       setBrands(res.data.brands)
       setProducts(res.data.products)
+      localStorage.setItem("products", products)
+      console.log(products)
+      localStorage.setItem("brands", brands)
+      localStorage.setItem("categories", categories)
     });
 
     if(LogLog){
@@ -45,9 +53,11 @@ const Home = () => {
 
 
 
-  // const goCart=()=>{
-  //   navigate("/cart", {state:{isTrue:true}})
-  // }
+  const callProductDetails=(product)=>{
+    console.log("details called")
+    navigate("/product/details", {state:{product:product}} )
+
+  }
   
 
   return (
@@ -65,7 +75,7 @@ const Home = () => {
       <hr />
       <div className="container" style={{ height: '30px' }}>
         <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '30px' }}>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <button style={{ height: '30px' }} className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse pl-4" id="navbarNav">
@@ -87,13 +97,13 @@ const Home = () => {
         <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="d-block w-100" src="https://images.ctfassets.net/1nw0m35kh5t7/6kI0OuYTrVywhKOyUd1kDi/ed6186f9da8feb4464ec6f9e238e6073/Types-of-e-commerce-16-9" alt="First slide" />
+              <img className="d-block w-100" src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667947281/Banners_DBMS/maxresdefault_uy8eqg.jpg" alt="First slide" />
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src="https://assets.entrepreneur.com/content/3x2/2000/20191127134656-e-commerce-3406613.jpeg?width=600&crop=16:9" alt="Second slide" />
+              <img className="d-block w-100" src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667945244/Banners_DBMS/F_banner_wa11fu.jpg" alt="Second slide" />
             </div>
             <div className="carousel-item">
-              <img className="d-block w-100" src="https://media.newyorker.com/photos/5b465113da42df0b560981d3/16:9/w_1280,c_limit/180723_r32444_rd.jpg" alt="Third slide" />
+              <img className="d-block w-100" src="https://res.cloudinary.com/dxo3abzy2/image/upload/v1667947139/Banners_DBMS/dd_xscwe5.jpg" alt="Third slide" />
             </div>
           </div>
           <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -119,81 +129,17 @@ const Home = () => {
       <br />
       <br />
       <div className="container cardItem" id="newarrive">
-        <h2>New Arrived</h2>
-        <br />
-        <div className="row">
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-3">
-            <div className="card">
-              <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/5.jpg" alt="Card image cap" />
-              <div className="card-body">
-                <p className="card-text"><a href="inner-productpage.html" className="text-dark">Just another item name</a></p>
-                <div className="ratings">
-                  {/* <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-warning"></i>
-                          <i class="fas fa-star text-secondary"></i> */}
-                  <label className="text-secondary ml-3" />
-                </div>
-                <p className="card-cost">$179.00</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {
+          // brands.map((brand,index)=>(
+            
+          // ))
+        }
+        
+        
       </div>
       <br /><br />
-      <div className="container cardItem" id="recommend">
+
+      {/* <div className="container cardItem" id="recommend">
         <div id="heading"> <h2>Recommended</h2>
           <button type="button" className="btn btn-outline-primary" id="float">See all</button> </div>
         <br />
@@ -235,13 +181,16 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <br />
       <br />
       <div className="container cardItem" id="brands">
-        <h2>Our Brands</h2>
-        <br />
+      <div id="heading"><h2>Our Brands</h2>
+        <button type="button" className="btn btn-outline-primary" onClick={(e)=>{e.preventDefault(); navigate("/products", {state:{products:products,brands:brands,categories:categories}})}} id="float" style={{width:315}}>See all</button> </div>        
+        {/* <br /> */}
+        {/* <br /> */}
         <hr />
+        <br />
         <div className="container" style={{ height: '30px' }}>
           <nav className="navbar navbar-expand-lg navbar-light" style={{ height: '30px' }}>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -252,7 +201,7 @@ const Home = () => {
               {
                 brands.map((brandName, index)=>(
                   <li className="nav-item active" key={index} style={{overflow : 'hidden'}}>
-                  <a className="nav-link" href="#">{brandName}</a>
+                  <a className="nav-link" onClick={(e)=>{e.preventDefault(); navigate("/products/brand", {state:{brandName:brandName,products:products,brands:brands,categories:categories}})}}>{brandName}</a>
                 </li>
                 ))
               }
@@ -261,9 +210,10 @@ const Home = () => {
             </div>
           </nav>
         </div>
+        <br/>
       <hr />
-        <div className="row">
-          <div className="card">
+        {/* <div className="row"> */}
+          {/* <div className="card">
             <img className="card-img-top img-fluid" src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/logos/logo1.png" width="20%" style={{ padding: '0 35px' }} />
             <hr />
             <div className="card-body">
@@ -292,8 +242,8 @@ const Home = () => {
             <hr />
             <div className="card-body">
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
       <br />
     </div>

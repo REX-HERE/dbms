@@ -72,8 +72,11 @@ export const getLogin=async(data)=>{
     return response.data
 }
 
-export const getProductById=(productId)=>{
-    return myAxios.get(`/products/${productId}`)
+export const getProductById=async (productId)=>{
+    // console.log(productId)()
+    const response=await myAxios.get(`/products/${productId}`)
+    return response.data
+
 }
 
 export const getAllProduct=()=>{

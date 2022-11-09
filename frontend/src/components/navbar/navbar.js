@@ -30,9 +30,10 @@ const Navbar = () => {
           </div>
           <div className="col-md-7" id="searchbar">
             <div className="input-group mt-3">
-              <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" />
+            <h3 class="text-center">Shop Now</h3>
+              {/* <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="button-addon2" /> */}
               <div className="input-group-append">
-                <button className="btn btn-primary" type="button" id="button-addon2"><i className="fas fa-search" /></button>
+                {/* <button className="btn btn-primary" type="button" id="button-addon2"><i className="fas fa-search" /></button> */}
               </div>
             </div>
           </div>

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { deleteProductFromCart, getCart, postOrder } from '../../api/api'
+import { deleteProductFromCart, getAllProduct, getCart, getOrdersById, getProductById, postOrder } from '../../api/api'
 import { LogLog } from '../../constants/constant_vals'
+import { Link } from 'react-router-dom'
+
+
+
 
 const Cart = () => {
         
@@ -17,54 +21,145 @@ const Cart = () => {
     const [imageUrl, setImageUrl]=useState(""); 
 
     const [carts, setCarts]=useState([])
+    const [product, setProduct]=useState(null)
     const [quantity, setQuantity]= useState(0);
     const [totalAmount, setTotalAmount]=useState(0);
+    const [isTrue, setIsTrue]=useState(true);
+    const [products, setProducts]=useState([]);
 
-    // const location=useLocation()   
-    // console.log(location.state.isTrue)
+    // const getProduct=(id)=>{
+    //     setProduct(getProductById(id))
+    //     return true
+    // }
 
-    const callDelete=()=>{
+
+
+    function CartCard(props) {
+        return(
+            <div className="card p-4" id="cards">
+            <h5 className="text-dark">Product Id: {props.product.productId}</h5>
+            <div className="row mt-4">
+            <div className="col-md-3">
+                <div className="overlay">
+                <img src={props.product.imageUrl} className="zoom-in figure-img img-fluid" />
+                </div>
+            </div>
+            <div className="col-md-7">
+                <h5 className="text-muted pt-2" id="to_insert">{props.product.productName}</h5>
+                <p className="text-uppercase font-weight-light">{props.product.categoryName}</p>
+                <div className="linespace mb-4">
+                <p className="text-muted mt-4">{props.product.brandName}</p>
+                <p className="text-muted mt-4">{props.cart.productQuantity}</p>                
+                </div>
+                <button onClick={(e)=>{e.preventDefault();callDelete(props)}} className="btn btn-sm text-muted text-uppercase"><i className="fas fa-trash-alt pr-2" />REMOVE ITEM</button>
+                &nbsp;
+            </div>
+            {/* <div className="col-md-2">
+                <div className="input-group input-group-sm">
+                <div className="input-group-prepend"  onClick={(e)=>{e.preventDefault(); setQuantity(prev=>{
+                      console.log({quantity})
+                      return prev+1
+                    })}}>
+                      <span className="input-group-text"><i className="fas fa-plus" /></span>
+                    </div>
+                    <input type="text" className="numberbox1 form-control" value={props.product.quantity} />
+                    <div className="input-group-append" onClick={(e)=>{e.preventDefault(); setQuantity(prev=>{
+                      console.log({quantity})
+                      return Math.max(0,prev-1)
+                    })}}>
+                      <span className="input-group-text"><i className="fas fa-minus" /></span>
+                    </div>
+                </div>
+            </div> */}
+            
+            </div>
+            <hr />
+            <div className="row">
+            </div>
+        </div>
+    
+        )
+      }    
+        
+
+    const callDelete=(props)=>{
         deleteProductFromCart({
+
             userId: localStorage.getItem("userId"),
-            productId: productId,
-            productQuantity: quantity
+            productId: props.cart.productId,
+            productQuantity: props.cart.productQuantity
 
         }).then((res)=>{
             if(LogLog){
                 console.log(res.data)
             }
+        })
+        window.location.reload(false);
+    }
+
+    const findTotal=()=>{
+
+        carts.map((cart)=>{
+            products.map((product)=>{
+                if(product.productId === cart.productId){
+                    setTotalAmount(prev=>{
+                        return prev+(product.price*cart.productQuantity)
+                    })
+                }
+            })
         })
     }
 
     const checkOut=()=>{
         postOrder({
-            cartData: carts
+            carts
 
         }).then((res)=>{
             if(LogLog){
                 console.log(res.data)
             }
         })
+        carts.map((cart)=>{
+            deleteProductFromCart({
+                userId: cart.userId,
+                productId: cart.productId,
+                productQuantity: cart.productQuantity
+
+            }).then((res)=>{
+                console.log(res.data)
+            })
+        })
+
+
         navigate("/")
+        window.location.reload(false);
         alert("Your Order Have Been Placed Successfully!")
     }
+    window.onload=()=>{setIsTrue(true)}
 
     useEffect(()=>{
-        getCart(localStorage.getItem("userId")).then((res)=>{
-            if(LogLog){
-                console.log(res.data)
+        
+            getCart(localStorage.getItem("userId")).then((res)=>{
+                if(LogLog){
+                    console.log(res.data)
+                }
+                if(isTrue){
+                setCarts(res.data);
+                getAllProduct().then((res)=>{
+                    setProducts(res.data)
+                });
+                findTotal();
+                } 
             }
-
-            setCarts(res.data);
-
-
-        })
+        )
 
         if(LogLog){
             console.log("done")
+            setIsTrue(false)
         }
+        return()=>{setIsTrue(false)}
 
-    },[])
+    },[isTrue])
 
         
     return (
@@ -87,39 +182,20 @@ const Cart = () => {
             <div className="container" id="card">
             <div className="row">
                 <div className="col-md-8">
-                <div className="card p-4" id="cards">
-                    <h5 className="text-dark">Cart</h5>
-                    <div className="row mt-4">
-                    <div className="col-md-3">
-                        <div className="overlay">
-                        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" className="zoom-in figure-img img-fluid" />
-                        </div>
-                    </div>
-                    <div className="col-md-7">
-                        <h5 className="text-muted pt-2" id="to_insert">Adidas Cool T-Shirt</h5>
-                        <p className="text-uppercase font-weight-light">SHIRT - BLUE</p>
-                        <div className="linespace mb-4">
-                        <p className="text-muted mt-4">Color : BLUE</p>
-                        </div>
-                        <button onclick={(e)=>{e.preventDefault();callDelete()}} className="btn btn-sm text-muted text-uppercase"><i className="fas fa-trash-alt pr-2" />REMOVE ITEM</button>
-                        &nbsp;
-                    </div>
-                    <div className="col-md-2">
-                        <div className="input-group input-group-sm">
-                        <div className="input-group-prepend" onclick="add2()">
-                            <span className="input-group-text"><i className="fas fa-plus" /></span>
-                        </div>
-                        <input type="text" className="numberbox2 form-control" defaultValue={1} />
-                        <div className="input-group-append" onclick="subtract2()">
-                            <span className="input-group-text"><i className="fas fa-minus" /></span>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                    </div>
-                </div>
+                {
+                    carts.map((cart, index) =>( 
+                        products.map((product)=>(
+                            product.productId===cart.productId
+                            ?
+                            <CartCard key={index} {...cart} cart={cart} product={product}/>
+                            :<></>
+                        ))
+                    
+                    ))
+                }
+
+
+
                 </div>
                 <div className="col-md-4">
                 <div className="card p-3" id="card-cost">
@@ -139,7 +215,7 @@ const Cart = () => {
                     <hr />
                     <h6 className="pl-2 pt-1">Total Price <span className="float-right">RS {totalAmount}</span></h6>
                     <hr />
-                    <button onclick={(e)=>{e.preventDefault();checkOut()}} className="btn btn-primary mt-2"><a  className="text-white"><i className="fas fa-shopping-bag pr-2" />Proceed to Checkout</a></button>
+                    <button onClick={(e)=>{e.preventDefault();checkOut()}} className="btn btn-primary mt-2" style={{width:315}}><a  className="text-white"><i className="fas fa-shopping-bag pr-2" />Proceed to Checkout</a></button>
                 </div>
                 </div>
             </div>

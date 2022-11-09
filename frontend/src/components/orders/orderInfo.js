@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
 import "../ui/css/orderInfo.css";
-import { getOrdersById } from '../../api/api';
 import { LogLog } from '../../constants/constant_vals';
+import { getOrdersById } from '../../api/api';
+
 
 const Orders = () => {
 
@@ -20,12 +21,20 @@ const Orders = () => {
   const [ratings, setRatings]=useState(0);
   const [imageUrl, setImageUrl]=useState(""); 
 
-  useEffect({
+  useEffect(() =>{
     if(LogLog){
-      console.log(localStorage.getItem("userId"))
-    }    
+      console.log(localStorage.getItem("userId"))   
+    }
     getOrdersById(localStorage.getItem("userId")).then((res)=>{
-
+      if(LogLog){
+        console.log(res.data)
+      }
+      setOrderData(res.data)
+      setOrderId(res.data.orderId)
+      setOrderTime(res.data.orderTime)
+      setOrderAddress(res.data.orderAddress)
+      setProductDataList(res.data.productDataList)
+      
     })
   })
 

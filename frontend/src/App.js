@@ -4,7 +4,7 @@ import { LogInfo } from './constants/constant_vals';
 import {Routes, Route, Link} from 'react-router-dom';
 import Navbar from "./components/navbar/navbar";
 import Home from "./components/home/home";
-import AllProducts from "./components/product/productDeatils";
+import AllProducts from "./components/product/allProducts";
 import ProductsByBrands from "./components/product/productsByBrands";
 import ProductDeatils from "./components/product/productDeatils";
 import SellingProducts from "./components/product/sellingProducts";

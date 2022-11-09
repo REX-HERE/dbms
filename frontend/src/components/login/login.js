@@ -72,7 +72,7 @@ const Login = () => {
                     <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
                   </div>
                   <br />
-                  <button  className="btn btn-primary btn-sm text-light_debug" onClick={(e)=>{e.preventDefault();login()}}>Login</button>
+                  <button  className="btn btn-primary btn-sm text-light_debug" style={{width:330}} onClick={(e)=>{e.preventDefault();login()}}>Login</button>
                   <Link className="float-right text-primary" to="/signUp">Not a Member? Sign Up</Link>
                   {/* <a href="register.html" className="float-right text-primary">Not a Member? Register</a> */}
                 </form>

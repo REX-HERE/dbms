@@ -1,23 +1,37 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { addToCart } from '../../api/api'
 
 const ProductDeatils = () => {
-
+  const navigate=useNavigate()
+  const location=useLocation()  
+  console.log(location.state)
+  console.log(location.state.product)
+  
   const [productId, setProductId]=useState("")
   const [productName, setProductName]=useState("")
   const [price, setPrice]=useState(0)
   const [description, setDescription]=useState("")
   const [brandName, setBrandName]=useState("")
   const [categoryName, setCategoryName]=useState("")
-  const [quantity, setQuantity]= useState(0);
   const [ratings, setRatings]=useState(0);
   const [imageUrl, setImageUrl]=useState("");
-
-    const location=useLocation()  
-    console.log(location.state.Product)
-
   
+  const [product, setProduct]=useState(location.state.product)
+  const [quantity, setQuantity]= useState(0);
 
+
+  const postToCart=()=>{
+    addToCart({
+      userId: localStorage.getItem("userId"),
+      productId: product.productId,
+      productQuantity: quantity
+
+    }).then((res)=>{
+      console.log(res.data)
+    })
+    navigate("/cart")
+  }
 
 
   return (
@@ -31,33 +45,34 @@ const ProductDeatils = () => {
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossOrigin="anonymous" />{/* fontawesom cdn link */}
         <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         {/* font */} 
+        <hr/>
         <div className="container mt-5 mb-5" id="productPage">
           <div className="row">
             <div className="col-md-5">
               <div className="card">
-                <img src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg" className="figure-img img-fluid rounded" />
+                <img src={product.imageUrl} className="figure-img img-fluid rounded" />
               </div>
             </div>
             <div className="col-md-7">
-              <h5>Adidas Cool T-Shirt</h5>
-              <p className="text-muted">T-SHIRTS</p>
-              <h5 className="pt-4">$179.00</h5>
-              <h5 className="pt-4">Product Description</h5>
-              <p className="description text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <h5>{product.productName}</h5>
+              <p className="text-muted">{product.categoryName}</p>
+              <h5 className="pt-4">RS {product.price}</h5>
+              <h5 className="pt-4">Description: </h5>
+              <p className="description text-muted">{product.productDescription}</p>
               <hr />
               <table className="table mt-2">
                 <tbody>
-                  <tr>
+                  {/* <tr>
                     <th scope="row">Product name</th>
                     <td>T-SHIRT IE-106</td>
+                  </tr> */}
+                  <tr>
+                    <th scope="row">Brand: </th>
+                    <td>{product.brandName}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Category</th>
-                    <td>Clothing</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Rating</th>
-                    <td>4</td>
+                    <th scope="row">Rating: </th>
+                    <td>{product.ratings}</td>
                   </tr>
                 </tbody>
               </table>
@@ -65,18 +80,24 @@ const ProductDeatils = () => {
               <div className="row">
                 <div className="col-md-7">
                   <div className="input-group">
-                    <div className="input-group-prepend" onclick="add1()">
+                    <div className="input-group-prepend"  onClick={(e)=>{e.preventDefault(); setQuantity(prev=>{
+                      console.log({quantity})
+                      return prev+1
+                    })}}>
                       <span className="input-group-text"><i className="fas fa-plus" /></span>
                     </div>
-                    <input type="text" className="numberbox1 form-control" defaultValue={0} />
-                    <div className="input-group-append" onclick="subtract1()">
+                    <input type="text" className="numberbox1 form-control" value={quantity} />
+                    <div className="input-group-append" onClick={(e)=>{e.preventDefault(); setQuantity(prev=>{
+                      console.log({quantity})
+                      return Math.max(0,prev-1)
+                    })}}>
                       <span className="input-group-text"><i className="fas fa-minus" /></span>
                     </div>
                   </div>
                 </div>
               </div>
               <div id="purchase-btn">
-                <button type="button" className="btn btn-sm btn-light"><a className="text-black" href> <i className="fas fa-shopping-cart pr-2" />  Add to Cart </a> </button>
+                <button type="button" onClick={(e)=>{e.preventDefault();postToCart()}} className="btn btn-sm btn-light"><a className="text-black" href> <i className="fas fa-shopping-cart pr-2" />  Add to Cart </a> </button>
               </div>
             </div>  
           </div>

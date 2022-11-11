@@ -271,6 +271,44 @@ select * from user where userId="harsh" and type="customer" and password="Harsh1
 // new ones
 
 drop database shopNow;
+    email varchar(225),
+	foreign key(userId) references user(userId) on delete cascade,
+    primary key(userId,email)
+);
+
+insert into userEmailInfo values ("Chirag","chirag@gmail.com");
+insert into userEmailInfo values ("Punit","punit@gmail.com");
+insert into userEmailInfo values ("Anand","anand@gmail.com");
+insert into userEmailInfo values ("Shivam","shivam@gmail.com");
+insert into userEmailInfo values ("Shalini","shalini@gmail.com");
+insert into userEmailInfo values ("Sri","sri@gmail.com");
+
+
+
+create table product (
+	productId varchar(255) ,
+    productName varchar(225) ,
+    price int,
+    productDescription varchar(512),
+    brandName varchar(255) ,
+    categoryName varchar(255),
+    availableQuantity int default 100,
+    ratings int default 4,
+    imageUrl varchar(516) default "image url",
+    verificationStatus varchar(225) default "verified",
+    primary key (productId)
+
+);
+
+insert into product values ("30","Blue Shirt",600,"cotton fabric","Van Hussen","Shirt",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Blue_Shirt_oyf1rm.jpg","verified");
+insert into product values ("31","Blue Jeans",900,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Blue_Jeans_xwqyvp.jpg","verified");
+insert into product values ("32","M32",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/M32_vu4kvj.jpg","verified");
+insert into product values ("33","Airdopes 141",2000,"42H playtime, Water Resistance, Smooth Touch Controls","Boat","Earphones",150,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Airdopes_141_omoytr.jpg","verified");
+insert into product values ("34","Inspiron",50000,"intel i5-1115G4, 8GB, 2GB SSD, Win 11, Carbon Black","Dell","Laptop",25,3,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Dell_Inspiron_qgmtjr.jpg","verified");
+insert into product values ("35","Black Shoes",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Shoes",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Black_Shoes_trgml0.jpg","verified");
+insert into product values ("36","Rich Dad Poor Dad",600," What The Rich Teach Their Kids About Money That The Poor And Middle Class Do Not","Solomon","Book",200,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/RichDadPoorDad_lkhgjp.jpg","verified");
+insert into product values ("37","Blue Pen",300,"3 dimple tip technology, 0.7mm fine tip","Pilot","Pen",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Blue_pen_mfawlz.webp","verified");
+
 create database shopNow;
 
 use shopNow;
@@ -322,43 +360,6 @@ insert into userContactInfo values ("Milan","123856700");
 
 create table userEmailInfo (
 	userId varchar(225) not null,
-    email varchar(225),
-	foreign key(userId) references user(userId) on delete cascade,
-    primary key(userId,email)
-);
-
-insert into userEmailInfo values ("Chirag","chirag@gmail.com");
-insert into userEmailInfo values ("Punit","punit@gmail.com");
-insert into userEmailInfo values ("Anand","anand@gmail.com");
-insert into userEmailInfo values ("Shivam","shivam@gmail.com");
-insert into userEmailInfo values ("Shalini","shalini@gmail.com");
-insert into userEmailInfo values ("Sri","sri@gmail.com");
-
-
-
-create table product (
-	productId varchar(255) ,
-    productName varchar(225) ,
-    price int,
-    productDescription varchar(512),
-    brandName varchar(255) ,
-    categoryName varchar(255),
-    availableQuantity int default 100,
-    ratings int default 4,
-    imageUrl varchar(516) default "image url",
-    verificationStatus varchar(225) default "verified",
-    primary key (productId)
-
-);
-
-insert into product values ("30","Blue Shirt",600,"cotton fabric","Van Hussen","Shirt",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Blue_Shirt_oyf1rm.jpg","verified");
-insert into product values ("31","Blue Jeans",900,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Blue_Jeans_xwqyvp.jpg","verified");
-insert into product values ("32","M32",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/M32_vu4kvj.jpg","verified");
-insert into product values ("33","Airdopes 141",2000,"42H playtime, Water Resistance, Smooth Touch Controls","Boat","Earphones",150,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421780/DBMS/Airdopes_141_omoytr.jpg","verified");
-insert into product values ("34","Inspiron",50000,"intel i5-1115G4, 8GB, 2GB SSD, Win 11, Carbon Black","Dell","Laptop",25,3,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Dell_Inspiron_qgmtjr.jpg","verified");
-insert into product values ("35","Black Shoes",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Shoes",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Black_Shoes_trgml0.jpg","verified");
-insert into product values ("36","Rich Dad Poor Dad",600," What The Rich Teach Their Kids About Money That The Poor And Middle Class Do Not","Solomon","Book",200,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/RichDadPoorDad_lkhgjp.jpg","verified");
-insert into product values ("37","Blue Pen",300,"3 dimple tip technology, 0.7mm fine tip","Pilot","Pen",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Blue_pen_mfawlz.webp","verified");
 insert into product values ("38","Watch",800,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Titan_Wrist_Watch_kah5bw.jpg","verified");
 insert into product values ("39","Water Bottle",1000,"Stainless Steel 950 ml Silver Freezer Safe Insulated","Milton","Bottle",150,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667421779/DBMS/Water_Bottle_us6u9g.jpg","verified");
 

@@ -182,7 +182,7 @@ const Cart = () => {
             <link href="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
             {/* font */}
             <div className="cart">
-            <div className="container">
+            <div className="container" onClick={(e)=>{e.preventDefault(); window.location.reload(false)}}>
                 <h3 className="text-center">Shopping Cart Details</h3>
             </div>
             </div>

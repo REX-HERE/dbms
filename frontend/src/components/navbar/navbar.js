@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { getUserById } from '../../api/api';
+import { LogLog } from '../../constants/constant_vals';
 
 const Navbar = () => {
   console.log(localStorage.getItem("userId"))
 
   const navigate = useNavigate(); 
+  const [user, setUser] = useState({});
+
+  // useEffect(()=>{
+  //   console.log("useEffect called")
+
+  //   getUserById(localStorage.getItem("userId")).then((res)=>{
+  //     if(LogLog){
+  //       console.log(res.data)
+  //     }      
+  //     setUser(res.data)
+  //   })
+  // },[])
+
+  
+  useEffect(()=>{
+    console.log("useEffect called")
+    getUserById(localStorage.getItem("userId")).then((res)=>{
+      console.log(res.data)
+  
+      setUser(res.data)
+      console.log(user)
+    })
+
+    
+  },[])
+
   
   return (
     <div>
@@ -42,11 +70,18 @@ const Navbar = () => {
           
           <div className="col-md-3 mt-2" id="icons">
           {
-            localStorage.getItem("userId")
+            // localStorage.getItem("userId")
+            user.type === "customer"
             ?<Link onClick={() => { navigate('/customerProfile'); window.location.reload();}}>
             <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
           </Link>
-            :<Link to="/login"><div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div></Link>
+          :user.type === "seller"?<Link onClick={() => { navigate('/sellerProfile'); window.location.reload();}}>
+          <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
+          </Link>
+          :user.type === "admin"?<Link onClick={() => { navigate('/adminProfile'); window.location.reload();}}>
+          <div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div>
+          </Link>
+          :<Link to="/login"><div style={{cursor: 'pointer'}} className="circle float-right" data-toggle="modal" data-target="#loginModal" data-placement="top" title="LOGIN & SIGNUP"><i className="fas fa-user text-primary" /></div></Link>
           }
           
             

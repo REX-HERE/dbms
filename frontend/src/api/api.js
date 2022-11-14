@@ -21,6 +21,7 @@ export const getAllUsers=()=>{
 }
 
 export const postUser=async(data)=>{
+    console.log("post user called")
     const response=await myAxios.post("/user/update",data).then((res)=>{
         if(LogLog){
             console.log(res)
@@ -84,7 +85,8 @@ export const getAllProduct=()=>{
 }
 
 export const registerProduct=async(data)=>{
-    const response=await myAxios.post("/seller/addProduct",data).then((res)=>{
+    console.log("dekh")
+    const response=await myAxios.post(`/seller/addProduct/${data.userId}`,data).then((res)=>{
         if(LogLog){
             console.log(res)
         }
@@ -101,7 +103,7 @@ export const registerProduct=async(data)=>{
 }
 
 export const deleteProductById=(productId)=>{
-    return myAxios.delete(`/seller/deleteProduct/${productId}`)
+    return myAxios.get(`/seller/deleteProduct/${productId}`)
 }
 
 export const getSellingProducts=(userId)=>{

@@ -271,6 +271,51 @@ select * from user where userId="harsh" and type="customer" and password="Harsh1
 // new ones
 
 drop database shopNow;
+insert into product values ("60","Blue Jeans",900,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPoloJeans3_odsxxw.jpg","verified");
+insert into product values ("61","Blue Jeans",1000,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPolojeans6_luvdmw.jpg","verified");
+
+insert into product values("62","Wireless Mouse",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics3_n4nxqx.jpg","verified");
+insert into product values("63","Gaming Mouse",500,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics4_tjcufl.jpg","verified");
+insert into product values("64","Wireless Keyboard",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics2_zfymzt.jpg","verified");
+insert into product values("65","Wireless Keyboard",300,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics1_htm5as.jpg","verified");
+insert into product values("66","Earphones",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969644/Products/Logitech%20Electronics/LogitechElectronics6_sgsw9d.jpg","verified");
+insert into product values("67","Speakers",800,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969644/Products/Logitech%20Electronics/LogitechElectronics5_ykiozf.jpg","verified");
+
+insert into product values ("68","Black Shoes",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968861/Products/adidas%20footwear/shoe2_h4ezlz.jpg","verified");
+insert into product values ("69","Black Shoes",6000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968854/Products/adidas%20footwear/shoe1_pf4hxf.jpg","verified");
+insert into product values ("70","Sandals",5000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968661/Products/adidas%20footwear/adidas5_bl57ls.jpg","verified");
+insert into product values ("71","Sandals",4000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968654/Products/adidas%20footwear/adidas4_tgvaci.jpg","verified");
+insert into product values ("72","Sandals",6000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968648/Products/adidas%20footwear/adidas3_suqt6i.jpg","verified");
+insert into product values ("73","Sandals",3000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968641/Products/adidas%20footwear/adidas2_v4idxm.jpg","verified");
+insert into product values ("74","Sandals",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968632/Products/adidas%20footwear/adidas1_tm101g.jpg","verified");
+
+insert into product values ("75","Watch",800,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch2_uzj70w.jpg","verified");
+insert into product values ("76","Watch",900,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch1_s0x5n7.jpg","verified");
+insert into product values ("77","Watch",700,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch4_qa3n7i.jpg","verified");
+insert into product values ("78","Watch",600,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch3_lxtyel.jpg","verified");
+insert into product values ("79","Watch",1000,"Diigtal, Connectibility to Mobile, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch6_k1q9tm.jpg","verified");
+insert into product values ("80","Watch",1200,"Digital, Connectibility to Mobile, Case Shape Square","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch5_xz8nkd.jpg","verified");
+
+insert into product values ("81","S22",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile5_juswhi.jpg","verified");
+insert into product values ("82","ZFlip4",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile4_wkf81h.jpg","verified");
+insert into product values ("83","F13",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile3_yh4gkr.jpg","verified");
+insert into product values ("84","M13",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile2_qi18hp.jpg","verified");
+insert into product values ("85","M33",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile6_kq8xrd.jpg","verified");
+insert into product values ("86","M53",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile1_r3vekl.jpg","verified");
+
+
+create table shoppingCart(
+	userId varchar(225),
+    productId varchar(255),
+    productQuantity int default 1,
+    foreign key (userId) references user(userId) on delete cascade,
+    foreign key (productId) references product(productId) on delete cascade,
+    primary key (userId,productId)
+);
+
+insert into shoppingCart values ("Chirag","30",2);
+insert into shoppingCart values ("Chirag","31",2);
+
     email varchar(225),
 	foreign key(userId) references user(userId) on delete cascade,
     primary key(userId,email)
@@ -385,50 +430,6 @@ insert into product values ("56","Blue Jeans",900,"cotton fabric","US Polo","Jea
 insert into product values ("57","Blue Jeans",1000,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPoloJeans5_huk0wf.jpg","verified");
 insert into product values ("58","Blue Jeans",900,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPoloJeans1_ftigzb.jpg","verified");
 insert into product values ("59","Blue Jeans",800,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPoloJeans2_uakidn.jpg","verified");
-insert into product values ("60","Blue Jeans",900,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPoloJeans3_odsxxw.jpg","verified");
-insert into product values ("61","Blue Jeans",1000,"cotton fabric","US Polo","Jeans",80,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667966739/Products/US%20Polo%20Jeans/UsPolojeans6_luvdmw.jpg","verified");
-
-insert into product values("62","Wireless Mouse",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics3_n4nxqx.jpg","verified");
-insert into product values("63","Gaming Mouse",500,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics4_tjcufl.jpg","verified");
-insert into product values("64","Wireless Keyboard",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics2_zfymzt.jpg","verified");
-insert into product values("65","Wireless Keyboard",300,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969643/Products/Logitech%20Electronics/LogitechElectronics1_htm5as.jpg","verified");
-insert into product values("66","Earphones",400,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969644/Products/Logitech%20Electronics/LogitechElectronics6_sgsw9d.jpg","verified");
-insert into product values("67","Speakers",800,"2.4 GHz with USB Nano Receiver, Optical Tracking, 12-Months Battery Life, Ambidextrous, PC/Mac/Laptop - Black","Logitech","Electronics",50,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969644/Products/Logitech%20Electronics/LogitechElectronics5_ykiozf.jpg","verified");
-
-insert into product values ("68","Black Shoes",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968861/Products/adidas%20footwear/shoe2_h4ezlz.jpg","verified");
-insert into product values ("69","Black Shoes",6000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968854/Products/adidas%20footwear/shoe1_pf4hxf.jpg","verified");
-insert into product values ("70","Sandals",5000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968661/Products/adidas%20footwear/adidas5_bl57ls.jpg","verified");
-insert into product values ("71","Sandals",4000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968654/Products/adidas%20footwear/adidas4_tgvaci.jpg","verified");
-insert into product values ("72","Sandals",6000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968648/Products/adidas%20footwear/adidas3_suqt6i.jpg","verified");
-insert into product values ("73","Sandals",3000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968641/Products/adidas%20footwear/adidas2_v4idxm.jpg","verified");
-insert into product values ("74","Sandals",7000,"Sole: Rubber,CLosure: Lace Up, Superior flexibility, cushioning and stability","Adidas","Footwear",15,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667968632/Products/adidas%20footwear/adidas1_tm101g.jpg","verified");
-
-insert into product values ("75","Watch",800,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch2_uzj70w.jpg","verified");
-insert into product values ("76","Watch",900,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch1_s0x5n7.jpg","verified");
-insert into product values ("77","Watch",700,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch4_qa3n7i.jpg","verified");
-insert into product values ("78","Watch",600,"Analog Dial, Quartz, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch3_lxtyel.jpg","verified");
-insert into product values ("79","Watch",1000,"Diigtal, Connectibility to Mobile, Case Shape Round","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch6_k1q9tm.jpg","verified");
-insert into product values ("80","Watch",1200,"Digital, Connectibility to Mobile, Case Shape Square","Titan","Watch",100,4,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667969058/Products/Titan%20Watch/TitanWatch5_xz8nkd.jpg","verified");
-
-insert into product values ("81","S22",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile5_juswhi.jpg","verified");
-insert into product values ("82","ZFlip4",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile4_wkf81h.jpg","verified");
-insert into product values ("83","F13",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile3_yh4gkr.jpg","verified");
-insert into product values ("84","M13",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile2_qi18hp.jpg","verified");
-insert into product values ("85","M33",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967110/Products/Saamsung%20Mobile/SamsungMobile6_kq8xrd.jpg","verified");
-insert into product values ("86","M53",9000,"Android v10.0, Quad Camera 64MP, 6000 mAh Battery","Samsung","Mobile",10,5,"https://res.cloudinary.com/dxo3abzy2/image/upload/v1667967111/Products/Saamsung%20Mobile/SamsungMobile1_r3vekl.jpg","verified");
-
-
-create table shoppingCart(
-	userId varchar(225),
-    productId varchar(255),
-    productQuantity int default 1,
-    foreign key (userId) references user(userId) on delete cascade,
-    foreign key (productId) references product(productId) on delete cascade,
-    primary key (userId,productId)
-);
-
-insert into shoppingCart values ("Chirag","30",2);
-insert into shoppingCart values ("Chirag","31",2);
 insert into shoppingCart values ("Chirag","32",2);
 insert into shoppingCart values ("Chirag","33",2);
 insert into shoppingCart values ("Chirag","34",2);

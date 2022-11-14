@@ -16,5 +16,4 @@ public class orderData {
     private Time orderTime;
     private String orderAddress;
     private List<productOrderData> productDataList;
-
 }

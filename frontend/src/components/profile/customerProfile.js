@@ -95,8 +95,8 @@ const CustomerProfile = () => {
         <div className="row rounded">
           <div className="col-3 mb-4 mt-3 pt-4 pb-3 bg-light w-auto h-fit-content">
             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" to="/orders" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; My
-                Orders</Link>
+              {/* <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" to="/orders" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; My
+                Orders</Link> */}
               <br />
               <Link onClick={(e)=>{e.preventDefault();clearStorage(); window.location.reload()}} className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill"  href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" />  Log
                 Out</Link>

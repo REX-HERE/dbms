@@ -96,14 +96,14 @@ const SellerProfile = () => {
         <div className="row rounded">
           <div className="col-3 mb-4 mt-3 pt-4 pb-3 bg-light w-auto h-fit-content">
             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; View my
-                Products</a>
+              <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" to="/sellingProducts" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; View my
+                Products</Link>
               <br />
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; Add
-                product</a>
+              <Link className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" to="/addProducts" role="tab" aria-controls="v-pills-profile" aria-selected="false">&nbsp; Add
+                product</Link>
               <br />
-              <a className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" /> &nbsp; Log
-                Out</a>
+              <Link onClick={(e)=>{e.preventDefault();clearStorage(); window.location.reload()}} className="nav-link active" id="v-pills-profile-tab" selected data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i className="fas fa-user" /> &nbsp; Log
+                Out</Link>
               {/* <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-info"></i> &nbsp; Basic Details</a> */}
             </div>
           </div>
@@ -147,15 +147,25 @@ const SellerProfile = () => {
                       </div>
                     </div>
                   </div>
+                  <div >
+                    <div className="col">
+                      <p className="font-weight-bold d-inline-block" >Enter Password</p>
+                      <input type="text" placeholder="Enter new password to change it " onChange={(e)=>setPassword(e.target.value)} className="form-control" />
+                    </div>
+                    {/* <div className="col">
+                      <p className="font-weight-bold d-inline-block">Last Name</p>
+                      <input type="text" placeholder={lastName} className="form-control" />
+                    </div> */}
+                  </div>                  
                 </form>
                 <hr />
                 <div className="delAccount pt-3">
                   <h5 className="text-dark">Delete Account</h5>
-                  <a href className="text-muted float-right font-weight-bold">Delete Your Account</a>
+                  <Link onClick={(e)=>{e.preventDefault();callDelete()}} className="text-muted float-right font-weight-bold">Delete Your Account</Link>
                   <p className="text-muted">By deleting your account, you will lose all your data.</p>
                 </div>
                 <hr className="mt-4" /><br /><br />
-                <button type="button" className="btn btn-outline-primary float-right mt-3 mb-5" data-toggle="modal" data-target=".bd-example-modal-md">Save Changes</button>
+                <button type="button" onClick={(e)=>{e.preventDefault();postChanges(); }} className="btn btn-outline-primary float-right mt-3 mb-5" data-toggle="modal" data-target=".bd-example-modal-md">Save Changes</button>
                 <br />
               </div>
               {/* <div class="tab-pane fade p-3" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
@@ -178,7 +188,8 @@ const SellerProfile = () => {
         </div>
       </div>
       <br /><br />
-      <div className="modal fade bd-example-modal-md" tabIndex={-1} role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+      {/* <div className="modal fade bd-example-modal-md" tabIndex={-1} role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-md">
           <div className="modal-content">
             <div className="modal-header">
@@ -192,8 +203,9 @@ const SellerProfile = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      </div> */}
+
+      {/* <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header bg-dark">
@@ -202,6 +214,8 @@ const SellerProfile = () => {
                 <span aria-hidden="true">×</span>
               </button>
             </div>
+
+
             <div className="modal-body bg-light">
               <form>
                 <div className="form-group">
@@ -220,9 +234,11 @@ const SellerProfile = () => {
                 <a href="register.html" className="float-right text-muted">Not a Member? Register</a>
               </form>
             </div>
+
           </div>
         </div>
-      </div>
+      </div> */}
+      
     </div>
   );
 }

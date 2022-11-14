@@ -82,7 +82,7 @@ public class productDao {
         return null;
     }
 
-    public Integer insertProduct(product productInfo) {
+    public Integer insertProduct(product productInfo, String userId) {
 
         String productName = productInfo.getProductName();
         Integer price = productInfo.getPrice();
@@ -114,10 +114,22 @@ public class productDao {
             String insertQuery = "insert into product(productId,productName,price,productDescription,brandName,categoryName,availableQuantity,ratings,imageUrl,verificationStatus) values(?,?,?,?,?,?,?,?,?,?)";
             String finalProductId = productId;
             Integer update = this.productJdbc.update(insertQuery, new Object[]{finalProductId, productName, price, productDescription, brandName, categoryName, availableQuantity, ratings, imageUrl, verificationStatus});
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        try{
+            String Query = "insert into soldBy values (?,?,?)";
+            Integer discount = 20;
+            Integer update = this.productJdbc.update(Query, userId, productId, discount);
             return update;
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+
+
         return null;
     }
 

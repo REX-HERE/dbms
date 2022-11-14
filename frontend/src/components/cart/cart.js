@@ -26,12 +26,96 @@ const Cart = () => {
     const [totalAmount, setTotalAmount]=useState(0);
     const [isTrue, setIsTrue]=useState(true);
     const [products, setProducts]=useState([]);
+    
 
-    // const getProduct=(id)=>{
-    //     setProduct(getProductById(id))
-    //     return true
-    // }
+    const callDelete=(props)=>{
+        deleteProductFromCart({
 
+            userId: localStorage.getItem("userId"),
+            productId: props.cart.productId,
+            productQuantity: props.cart.productQuantity
+
+        }).then((res)=>{
+            if(LogLog){
+                console.log(res.data)
+            }
+        })
+        window.location.reload(false);
+    }
+
+
+
+    const checkOut=()=>{
+        const result = true;
+        postOrder({
+            carts
+
+        }).then((res)=>{
+            if(LogLog){
+                console.log(res.data)
+            }
+        })
+        carts.map((cart)=>{
+            deleteProductFromCart({
+                userId: cart.userId,
+                productId: cart.productId,
+                productQuantity: cart.productQuantity
+
+            }).then((res)=>{
+                console.log(res.data.data)
+            })
+        })
+
+
+        navigate("/")
+        window.location.reload(false);
+        if(result){
+            alert("Your Order Have Been Placed Successfully!")
+        }else{
+            alert("Some error occured please reload and try again!")            
+        }
+    }
+    window.onload=()=>{setIsTrue(true)}
+
+    useEffect(()=>{
+        
+        getCart(localStorage.getItem("userId")).then((res)=>{
+            if(LogLog){
+                console.log(res.data)
+            }
+            if(isTrue){
+            setCarts(res.data);
+            getAllProduct().then((res)=>{
+                setProducts(res.data)
+            });
+            findTotal();
+            } 
+            console.log(totalAmount)
+            }
+        )
+          
+
+        if(LogLog){
+            console.log("done")
+            setIsTrue(false)
+        }
+        return()=>{setIsTrue(false)}
+
+    },[isTrue])
+
+    function findTotal() {
+        console.log("find total called")
+        carts.map((cart)=>{
+            products.map((product)=>{
+                if(product.productId === cart.productId){
+                    setTotalAmount(prev=>{
+                        return prev+(product.price*cart.productQuantity)
+                    })
+                }
+            })
+        })
+        console.log(totalAmount)
+    }
 
 
     function CartCard(props) {
@@ -82,84 +166,8 @@ const Cart = () => {
       }    
         
 
-    const callDelete=(props)=>{
-        deleteProductFromCart({
 
-            userId: localStorage.getItem("userId"),
-            productId: props.cart.productId,
-            productQuantity: props.cart.productQuantity
-
-        }).then((res)=>{
-            if(LogLog){
-                console.log(res.data)
-            }
-        })
-        window.location.reload(false);
-    }
-
-    const findTotal=()=>{
-
-        carts.map((cart)=>{
-            products.map((product)=>{
-                if(product.productId === cart.productId){
-                    setTotalAmount(prev=>{
-                        return prev+(product.price*cart.productQuantity)
-                    })
-                }
-            })
-        })
-    }
-
-    const checkOut=()=>{
-        postOrder({
-            carts
-
-        }).then((res)=>{
-            if(LogLog){
-                console.log(res.data)
-            }
-        })
-        carts.map((cart)=>{
-            deleteProductFromCart({
-                userId: cart.userId,
-                productId: cart.productId,
-                productQuantity: cart.productQuantity
-
-            }).then((res)=>{
-                console.log(res.data)
-            })
-        })
-
-
-        navigate("/")
-        window.location.reload(false);
-        alert("Your Order Have Been Placed Successfully!")
-    }
-    window.onload=()=>{setIsTrue(true)}
-
-    useEffect(()=>{
-        
-            getCart(localStorage.getItem("userId")).then((res)=>{
-                if(LogLog){
-                    console.log(res.data)
-                }
-                if(isTrue){
-                setCarts(res.data);
-                getAllProduct().then((res)=>{
-                    setProducts(res.data)
-                });
-                findTotal();
-                } 
-            }
-        )
-
-        if(LogLog){
-            console.log("done")
-            setIsTrue(false)
-        }
-        return()=>{setIsTrue(false)}
-
-    },[isTrue])
+    
 
         
     return (
@@ -192,31 +200,32 @@ const Cart = () => {
                         ))
                     
                     ))
+                    
                 }
 
 
 
                 </div>
                 <div className="col-md-4">
-                <div className="card p-3" id="card-cost">
-                    <h5 className="text-primary pl-2">Total Amount</h5>
-                    <table className="table table-borderless pt-2">
-                    <tbody>
-                        <tr>
-                        <th scope="row" className="font-weight-light">total Amount</th>
-                        <td>RS {totalAmount}</td>
-                        </tr>
-                        <tr>
-                        <th scope="row" className="font-weight-light">Shipping</th>
-                        <td>RS 0</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                    <hr />
-                    <h6 className="pl-2 pt-1">Total Price <span className="float-right">RS {totalAmount}</span></h6>
-                    <hr />
-                    <button onClick={(e)=>{e.preventDefault();checkOut()}} className="btn btn-primary mt-2" style={{width:315}}><a  className="text-white"><i className="fas fa-shopping-bag pr-2" />Proceed to Checkout</a></button>
-                </div>
+                    <div className="card p-3" id="card-cost">
+                        <h5 className="text-primary pl-2">Total Amount</h5>
+                        <table className="table table-borderless pt-2">
+                        <tbody>
+                            <tr>
+                            <th scope="row" className="font-weight-light">total Amount</th>
+                            <td>RS {totalAmount}</td>
+                            </tr>
+                            <tr>
+                            <th scope="row" className="font-weight-light">Shipping</th>
+                            <td>RS 0</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <hr />
+                        <h6 className="pl-2 pt-1">Total Price <span className="float-right">RS {totalAmount}</span></h6>
+                        <hr />
+                        <button onClick={(e)=>{e.preventDefault();checkOut()}} className="btn btn-primary mt-2" style={{width:315}}><a  className="text-white"><i className="fas fa-shopping-bag pr-2" />Proceed to Checkout</a></button>
+                    </div>
                 </div>
             </div>
             <div className="row">
@@ -233,7 +242,8 @@ const Cart = () => {
                 </div>
             </div>
             </div>
-            <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+            {/* <div className="modal fade" id="loginModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                 <div className="modal-header bg-dark">
@@ -245,10 +255,11 @@ const Cart = () => {
                 
 
                 </div>
-            </div>
-            </div>
+            </div> */}
+            {/* </div> */}
         </div>
         );
+        
 
 }
 
